@@ -1,0 +1,129 @@
+<!-- app/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>House Price Prediction</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="area">Area (sqft):</label>
+                <input type="number" name="area" id="area" required min="1000" max="10000" step="10">
+            </div>
+            
+            <div class="form-group">
+                <label for="bedrooms">Bedrooms:</label>
+                <select name="bedrooms" id="bedrooms" required>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bathrooms">Bathrooms:</label>
+                <select name="bathrooms" id="bathrooms" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="stories">Stories:</label>
+                <select name="stories" id="stories" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mainroad">Main Road Access:</label>
+                <select name="mainroad" id="mainroad" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="guestroom">Guestroom:</label>
+                <select name="guestroom" id="guestroom" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="basement">Basement:</label>
+                <select name="basement" id="basement" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="hotwaterheating">Hot Water Heating:</label>
+                <select name="hotwaterheating" id="hotwaterheating" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="airconditioning">Air Conditioning:</label>
+                <select name="airconditioning" id="airconditioning" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="parking">Parking Spaces:</label>
+                <select name="parking" id="parking" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="prefarea">Preferred Area:</label>
+                <select name="prefarea" id="prefarea" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="furnishingstatus">Furnishing Status:</label>
+                <select name="furnishingstatus" id="furnishingstatus" required>
+                    <option value="furnished">Furnished</option>
+                    <option value="semi-furnished">Semi-Furnished</option>
+                    <option value="unfurnished">Unfurnished</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Predict Price">
+        </form>
+
+        {% if rf_prediction %}
+        <div class="prediction-results">
+            <h2>Random Forest Prediction:</h2>
+            <p>{{ rf_prediction }}</p>
+            <h2>Gradient Boosting Prediction:</h2>
+            <p>{{ gb_prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
